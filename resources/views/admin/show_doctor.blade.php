@@ -40,6 +40,38 @@
 
         <!-- partial -->
 
+        <div class="container-fluid page-body-wrapper">
+            <div align="center" style="padding-top:50px">
+                <table>
+                    <tr style="background-color: black">
+
+                        <th style="padding:10px">Name</th>
+                        <th style="padding:10px">Phone</th>
+                        <th style="padding:10px">Speciality</th>
+                        <th style="padding:10px">Room No.</th>
+                        <th style="padding:10px">Image</th>
+                        <th style="padding:10px">Update</th>
+                        <th style="padding:10px">Update</th>
+
+                    </tr>
+
+                    @foreach ($doctors as $doctor)
+                        <tr align="center" style="background-color: white; color:black">
+                            <td>{{ $doctor->name }}</td>
+                            <td>{{ $doctor->phone }}</td>
+                            <td>{{ $doctor->speciality }}</td>
+                            <td>{{ $doctor->room }}</td>
+                            <td><img height="50" width="50" src="doctorimage/{{ $doctor->image }}" alt=""></td>
+                            <td><a class="btn btn-primary" href="{{ url('upload_doctor', $doctor->id) }}">Upload</a>
+                            </td>
+                            <td><a onclick="return confirm('are you sure you want to delete this')"
+                                    class="btn btn-danger" href="{{ url('delete_doctor', $doctor->id) }}">Delete</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </table>
+            </div>
+        </div>
 
 
         <!-- main-panel ends -->

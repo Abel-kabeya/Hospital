@@ -58,29 +58,29 @@
                     </tr>
 
                     @foreach ($data as $appointments)
-                        <tr>
+                        <tr align="center" style="background-color: white; color:black">>
 
-                            <td align="center" style="background-color: white; color:black">{{ $appointments->name }}
+                            <td></td>{{ $appointments->name }}
                             </td>
-                            <td align="center" style="background-color: white; color:black">{{ $appointments->email }}
+                            <td>{{ $appointments->email }}
                             </td>
-                            <td align="center" style="background-color: white; color:black">{{ $appointments->phone }}
+                            <td>{{ $appointments->phone }}
                             </td>
-                            <td align="center" style="background-color: white; color:black">
+                            <td>
                                 {{ $appointments->doctor }}
                             </td>
-                            <td align="center" style="background-color: white; color:black">{{ $appointments->date }}
+                            <td>{{ $appointments->date }}
                             </td>
-                            <td align="center" style="background-color: white; color:black">
+                            <td>
                                 {{ $appointments->message }}
                             </td>
-                            <td align="center" style="background-color: white; color:black">
+                            <td>
                                 {{ $appointments->status }}
                             </td>
-                            <td align="center" style="background-color: white; color:black">
+                            <td>
                                 <a class="btn btn-success" href="{{ url('approve', $appointments->id) }}">Approve</a>
                             </td>
-                            <td align="center" style="background-color: white; color:black">
+                            <td>
                                 <a class="btn btn-danger" href="{{ url('cancel', $appointments->id) }}">Cancel</a>
                             </td>
                         </tr>
