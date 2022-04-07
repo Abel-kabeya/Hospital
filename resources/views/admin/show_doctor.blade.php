@@ -50,7 +50,8 @@
                         <th style="padding:10px">Speciality</th>
                         <th style="padding:10px">Room No.</th>
                         <th style="padding:10px">Image</th>
-                        <th style="padding:10px">Update</th>
+                        <th style="padding:10px">Upload</th>
+                        <th style="padding:10px">Delete</th>
                         <th style="padding:10px">Update</th>
 
                     </tr>
@@ -66,6 +67,9 @@
                             </td>
                             <td><a onclick="return confirm('are you sure you want to delete this')"
                                     class="btn btn-danger" href="{{ url('delete_doctor', $doctor->id) }}">Delete</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-primary" href="{{ url('update_doctor', $doctor->id) }}">Update</a>
                             </td>
                         </tr>
                     @endforeach
