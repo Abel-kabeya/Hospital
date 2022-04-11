@@ -3,6 +3,18 @@
 
 <head>
 
+
+    <base href="/public">
+
+    <style type="text/css">
+        label {
+            display: inline-block;
+
+            width: 200px;
+        }
+
+    </style>
+
     @include('admin.css')
 
 </head>
@@ -41,47 +53,63 @@
         <!-- partial -->
 
         <div class="container-fluid page-body-wrapper">
-            <div align="center" style="padding-top:100px">
-                <table>
-                    <tr style="background-color: black">
 
-                        <th style="padding:10px">Patient Name</th>
-                        <th style="padding:10px">Email</th>
-                        <th style="padding:10px">Phone</th>
-                        <th style="padding:10px">Doctor Name</th>
-                        <th style="padding:10px">Date</th>
-                        <th style="padding:10px">Message</th>
-                        <th style="padding:10px">Status</th>
-                        <th style="padding:10px">Approve</th>
-                        <th style="padding:10px">Cancel</th>
-                        <th style="padding:10px">Send Mail</th>
 
-                    </tr>
+            <div class="container" align="center" style="padding-top: 100px;">
 
-                    @foreach ($data as $appointments)
-                        <tr align="center" style="background-color: white; color:black">
+                @if (session()->has('message'))
+                    <div class="alert alert-success">
 
-                            <td>{{ $appointments->name }}</td>
-                            <td>{{ $appointments->email }}</td>
-                            <td>{{ $appointments->phone }}</td>
-                            <td>{{ $appointments->doctor }}</td>
-                            <td>{{ $appointments->date }}</td>
-                            <td>{{ $appointments->message }}</td>
-                            <td>{{ $appointments->status }}</td>
-                            <td>
-                                <a class="btn btn-success" href="{{ url('approve', $appointments->id) }}">Approve</a>
-                            </td>
-                            <td>
-                                <a class="btn btn-danger" href="{{ url('cancel', $appointments->id) }}">Cancel</a>
-                            </td>
-                            <td>
-                                <a class="btn btn-primary" href="{{ url('email_view', $appointments->id) }}">Send
-                                    Mail</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </table>
+                        <button type="button" class="close" data-dismiss="alert">
+                            x
+                        </button>
+
+                        {{ session()->get('message') }}
+
+                    </div>
+                @endif
+
+
+                <form action="{{ url('send_email', $data->id) }}" method="POST">
+
+                    @csrf
+
+                    <div style="padding:15px;">
+                        <label for="">Greeting</label>
+                        <input type="text" style="color:black;" name="greeting" placeholder="Enter the email" required>
+                    </div>
+
+
+                    <div style="padding:15px;">
+                        <label for="">Body</label>
+                        <input type="text" style="color:black;" name="body" required>
+                    </div>
+
+                    <div style="padding:15px;">
+                        <label for="">Action Text</label>
+                        <input type="text" style="color:black;" name="actiontext" required>
+                    </div>
+
+                    <div style="padding:15px;">
+                        <label for="">Action Url</label>
+                        <input type="text" style="color:black;" name="actionurl" required>
+                    </div>
+
+                    <div style="padding:15px;">
+                        <label for="">End Part</label>
+                        <input type="text" style="color:black;" name="endpart" required>
+                    </div>
+
+
+                    <div style="padding:15px;">
+
+                        <input type="submit" class="btn btn-success" required>
+                    </div>
+
+                </form>
+
             </div>
+
         </div>
 
         <!-- main-panel ends -->
